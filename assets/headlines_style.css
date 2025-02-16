@@ -1,0 +1,144 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+  }
+  
+  body {
+    background-color: #f4f4f9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+  }
+  
+  /* Navbar Styling */
+  .navbar {
+    background-color: #0d47a1;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  
+  .navbar h1 {
+    font-size: 1.8rem;
+  }
+  
+  .navbar-list {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+  }
+  
+  .navbar-item a {
+    color: #fff;
+    text-decoration: none;
+    padding: 8px 15px;
+    transition: background 0.3s ease;
+    border-radius: 5px;
+  }
+  
+  .navbar-item a:hover {
+    background-color: #1565c0;
+  }
+  
+  h1 {
+    margin-bottom: 20px;
+    color: #0d47a1;
+    text-align: center;
+  }
+  
+  
+  #news-headlines {
+    list-style: none;
+    padding: 0;
+    width: 80%;
+    max-width: 600px;
+    overflow: hidden; /* Hide overflow for animation */
+    position: relative;
+    height: 500px; /* Fixed height for smooth scrolling */
+    width: 1700px;
+    border: 2px solid #0d47a1;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .article {
+    text-align: center;
+    padding: 15px;
+    border-bottom: 1px solid #ccc;
+    animation: slideUp 10s linear infinite; /* Animation for moving headlines */
+  }
+  
+  
+  @keyframes slideUp {
+    0% {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+    10% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-100%);
+    }
+  }
+  
+  
+  .headline {
+    font-size: 1.2em;
+    color: #0d47a1;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .date {
+    font-size: 0.9em;
+    color: #555;
+    margin-bottom: 5px;
+  }
+  
+  .overview {
+    font-size: 0.95em;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .read-more {
+    color: #1976d2;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+  }
+  
+  .read-more:hover {
+    color: #0d47a1;
+    text-decoration: underline;
+  }
+  
+  
+  @media (max-width: 600px) {
+    #news-headlines {
+      width: 90%;
+      height: 120px;
+    }
+  
+    .headline {
+      font-size: 1em;
+    }
+  
+    .overview {
+      font-size: 0.85em;
+    }
+  }

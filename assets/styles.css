@@ -1,0 +1,149 @@
+* {
+ 
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    color: #000000;
+    transition: all 0.3s ease;
+  
+}
+
+body {
+  background-color: transparent;
+  margin: 0;
+  padding: 0;
+	display: grid;
+	place-items: center;
+	min-height: 100vh;
+	background: hsl(0, 0%, 0%);
+	color: hsl(0 0% 10%);
+	font-family: 'Libre Baskerville', 'SF Pro Text', 'SF Pro Icons', 'AOS Icons', 'Helvetica Neue',
+		Helvetica, Arial, sans-serif, system-ui;
+}
+
+body::before {
+	--size: 60px;
+	--line: hsl(0 0% 10% / 0.5);
+	content: '';
+	height: 100vh;
+	width: 100vw;
+	position: fixed;
+	background: linear-gradient(
+				90deg,
+				var(--line) 1px,
+				transparent 1px var(--size)
+			)
+			50% 50% / var(--size) var(--size),
+		linear-gradient(var(--line) 1px, transparent 1px var(--size)) 50% 50% /
+			var(--size) var(--size);
+	mask: linear-gradient(-15deg, transparent 50%, white);
+	top: 0;
+	transform-style: flat;
+	pointer-events: none;
+	z-index: -1;
+}
+
+
+/* Navbar Styling */
+.navbar {
+    background-color: #000000;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: #1F1C2C;
+    background: -webkit-linear-gradient(to right, #928DAB, #1F1C2C);
+    background: linear-gradient(to right, #000000, #000000);
+
+  }
+  
+  .navbar h1 {
+    font-size: 1.8rem;
+  }
+  
+  .navbar-list {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+  }
+  
+  .navbar-item a {
+    color: #fff;
+    text-decoration: none;
+    padding: 8px 15px;
+    transition: background 0.3s ease;
+    border-radius: 5px;
+  }
+  
+  .navbar-item a:hover {
+    background-color: #1565c0;
+  }
+  
+  .links a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 10px;
+    padding: 8px 12px;
+    transition: background 0.3s ease;
+    border-radius: 5px;
+  }
+  
+  .links a:hover {
+    background-color: #1976d2;
+  }
+  
+  /* About Us Section */
+  .About_us {
+    background: rgba( 255, 255, 255, 0.25 );
+box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+backdrop-filter: blur( 7.5px );
+-webkit-backdrop-filter: blur( 7.5px );
+border-radius: 10px;
+  }
+  
+  .About_us h3 {
+    color: #0d47a1;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+ 
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .navbar {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .navbar-list, .links {
+      flex-direction: column;
+      gap: 10px;
+    }
+  
+    .links a {  
+      margin: 5px 0;
+    }
+  }
+  
+  /* Footer Styling */
+  footer {
+    background-color: #0d47a1;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: #1F1C2C;
+    background: -webkit-linear-gradient(to right, #928DAB, #1F1C2C);
+    background: linear-gradient(to right, #928DAB, #1F1C2C);
+  }
+  
+  footer p {
+    margin: 0;
+  }

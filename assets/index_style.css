@@ -1,0 +1,125 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+  }
+  
+ 
+    body {
+        background-image: url("HTML/icons/image.png"); 
+        background-size: cover;    
+        background-position: center; 
+        background-repeat: no-repeat; 
+        margin: 0;
+        padding: 0;
+      }
+      
+  
+  /* Navbar Styling */
+  .navbar {
+    background-color: #0d47a1;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  
+  .navbar h1 {
+    font-size: 1.8rem;
+  }
+  
+  .navbar-list {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+  }
+  
+  .navbar-item a {
+    color: #fff;
+    text-decoration: none;
+    padding: 8px 15px;
+    transition: background 0.3s ease;
+    border-radius: 5px;
+  }
+  
+  .navbar-item a:hover {
+    background-color: #1565c0;
+  }
+  
+  .links a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 10px;
+    padding: 8px 12px;
+    transition: background 0.3s ease;
+    border-radius: 5px;
+  }
+  
+  .links a:hover {
+    background-color: #1976d2;
+  }
+  
+  /* About Us Section */
+  .About_us {
+    background-color: #ffffff;
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 800px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    text-align: center;
+  }
+  
+  .About_us h3 {
+    color: #0d47a1;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  
+  /* Headlines Section */
+  .headlines {
+    background-color: #e3f2fd;
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 800px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Footer Styling */
+  footer {
+    background-color: #0d47a1;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+  
+  footer p {
+    margin: 0;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .navbar {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .navbar-list, .links {
+      flex-direction: column;
+      gap: 10px;
+    }
+  
+    .links a {
+      margin: 5px 0;
+    }
+  }
