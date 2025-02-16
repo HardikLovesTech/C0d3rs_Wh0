@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Safety Checker</title>
+    <link rel="stylesheet" href="../assets/linkverify_style.css"/>
+    <link rel="stylesheet" href="../assets/styles.css"/>
+</head>
+<body>
+
+    <nav class="navbar">
+        Authenica
+          <ul class="navbar-list">
+            <li class="navbar-item"><a href="../HTML/index.html">Home</a></li>
+            <li class="navbar-item"><a href="linkverify.html">Verify Link</a></li>
+            <li class="navbar-item"><a href="../HTML/docverify.html">Verify Documents</a></li>
+            <li class="navbar-item"><a href="../HTML/headlines.html">Latest News</a></li>
+          </ul>
+    </nav>
+
+    <div class="container">
+        <h2>Check if a Link is Safe</h2>
+        <input type="text" id="urlInput" name="urlInput" placeholder="Enter URL">
+        <button onclick="checkURL()">Check URL</button>
+        <p id="result"></p>
+    </div>
+
+    <script>
+        function checkURL() {
+            const url = document.getElementById("urlInput").value;
+
+            fetch("/check-url", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ url: url })
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById("result").innerText = data.message;
+                document.getElementById("result").style.color = data.status === "Unsafe" ? "red" : "green";
+            })
+            .catch(error => console.error("Error:", error));
+        }
+    </script>
+
+<div class="container">
+    <h2>URL Shortener</h2>
+    <input type="text" id="longUrl" class="form-control" placeholder="Enter long URL" required>
+    <button class="btn btn-primary w-100" onclick="shortenUrl()">Shorten</button>
+
+    <!-- Error Message -->
+    <p id="errorMessage">Error: The URL must start with "http://" or "https://"</p>
+
+    <!-- Shortened URL and Copy button -->
+    <div id="shortUrl" style="display: none;">
+        <p id="shortenedUrlText"></p>
+        <button id="copyButton" class="btn w-25" onclick="copyToClipboard()" style="display: none;">Copy URL</button>
+    </div>
+</div>
+
+<script>
+  let urlMapping = {};
+
+   function shortenUrl() {
+       let longUrl = document.getElementById('longUrl').value;
+       let errorMessage = document.getElementById('errorMessage');
+      
+       if (!longUrl.startsWith('http://') && !longUrl.startsWith('https://')) {
+           errorMessage.style.display = 'block';  // Show error message
+           return;
+       }
+
+       errorMessage.style.display = 'none';
+
+       let shortCode = Math.random().toString(36).substring(2, 8); 
+       urlMapping[shortCode] = longUrl;
+
+       let shortUrlText = `Shortened URL: <a href="${longUrl}" target="_blank">http://authentica.ly/${shortCode}</a>`;
+       let shortUrlElement = document.getElementById('shortenedUrlText');
+       shortUrlElement.innerHTML = shortUrlText;
+
+       document.getElementById('shortUrl').style.display = 'block';
+       let copyButton = document.getElementById('copyButton');
+       copyButton.style.display = 'inline-block';
+
+       copyButton.setAttribute('data-url', `http://authentica.ly/${shortCode}`);
+
+       document.getElementById('longUrl').value = '';
+   }
+
+   function copyToClipboard() {
+       let shortUrl = document.getElementById('copyButton').getAttribute('data-url');
+       navigator.clipboard.writeText(shortUrl).then(function() {
+           alert("URL copied to clipboard!");
+       }).catch(function(error) {
+           alert("Failed to copy the URL: " + error);
+       });
+   }
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify Document</title>
+    <link rel="icon" href="icons/logo.png" type="image/png" />
+    <link rel="stylesheet" href="../assets/docverify_style.css"/>
+    <link rel="stylesheet" href="../assets/styles.css"/>
+</head>
+<body>
+    <nav class="navbar">
+        Authenica
+          <ul class="navbar-list">
+            <li class="navbar-item"><a href="index.html">Home</a></li>
+            <li class="navbar-item"><a href="../templates/linkverify.html">Verify Link</a></li>
+            <li class="navbar-item"><a href="docverify.html">Verify Documents</a></li>
+            <li class="navbar-item"><a href="headlines.html">Latest News</a></li>
+          </ul>
+      </nav>
+          <div class="upload-container">
+            <h2>Upload Your Document</h2>
+            <form action="/upload" method="POST" enctype="multipart/form-data">
+                <input type="file" name="document" accept=".pdf, .doc, .docx, .txt" required><br>
+                <button type="submit">Upload</button>
+            </form>
+        </div>
+
+</body>
+</html>

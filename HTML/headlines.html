@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latest News</title>
+    <link rel="icon" href="icons/logo.png" type="image/png" />
+    <link rel="stylesheet" href="../assets/headlines_style.css"/>
+    <link rel="stylesheet" href="../assets/styles.css"/>
+</head>
+
+<body>
+    <nav class="navbar">
+        Authenica
+          <ul class="navbar-list">
+            <li class="navbar-item"><a href="index.html">Home</a></li>
+            <li class="navbar-item"><a href="../templates/linkverify.html">Verify Link</a></li>
+            <li class="navbar-item"><a href="docverify.html">Verify Documents</a></li>
+            <li class="navbar-item"><a href="headlines.html">Latest News</a></li>
+          </ul>
+      </nav>
+
+    <h1>Data Breaches & Cybersec Headlines</h1>
+    <ul id="news-headlines"></ul>
+    
+    <script>
+        const apiKey = 'YOUR_API_KEY'; 
+        // tha API: https://newsapi.org/docs/get-started
+        const url = `https://newsapi.org/v2/everything?q=cyber-crime+data-breaches&PageSize=15&apiKey=038b93f0f89c4d018f86fd59a3c0e1e6`;
+
+        let displayedTitles = [];
+
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                const headlinesList = document.getElementById('news-headlines');
+
+                // Sort the articles by 'publishedAt' (newest first)
+                data.articles.sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt));
+                
+                data.articles.forEach(article => {
+                    // Check if the title has already been displayed
+                    if (!displayedTitles.includes(article.title)) {
+                        const li = document.createElement('li');
+                        li.classList.add('article');
+                        
+                        // Create the headline
+                        const headline = document.createElement('h2');
+                        headline.classList.add('headline');
+                        headline.textContent = article.title;
+                        li.appendChild(headline);
+
+                        // Add the publication date
+                        const date = new Date(article.publishedAt);
+                        const dateStr = date.toLocaleDateString(); // You can format the date as needed
+                        const dateSpan = document.createElement('div');
+                        dateSpan.classList.add('date');
+                        dateSpan.textContent = `Published on: ${dateStr}`;
+                        li.appendChild(dateSpan);
+
+                        // Add the overview (description) if available
+                        if (article.description) {
+                            const overview = document.createElement('div');
+                            overview.classList.add('overview');
+                            overview.textContent = article.description;
+                            li.appendChild(overview);
+                        }
+
+                        // Add a 'Read More' link
+                        const readMoreLink = document.createElement('a');
+                        readMoreLink.href = article.url;
+                        readMoreLink.target = '_blank';
+                        readMoreLink.classList.add('read-more');
+                        readMoreLink.textContent = 'Read More';
+                        li.appendChild(readMoreLink);
+
+                        // Append the list item to the list
+                        headlinesList.appendChild(li);
+
+                        // Add the title to the list of displayed titles
+                        displayedTitles.push(article.title);
+                    }
+                });
+            })
+            .catch(error => console.error('Error fetching news:', error));
+    </script>
+</body>
+</html>

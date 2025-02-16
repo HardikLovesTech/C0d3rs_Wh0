@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Safety Checker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        input[type="file"] {
+            margin-bottom: 10px;
+        }
+        #fileResult {
+            font-size: 18px;
+            margin-top: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h2>Upload a File to Check for Safety</h2>
+    <input type="file" id="fileInput">
+    <button onclick="uploadFile()">Upload</button>
+    <p id="fileResult"></p>
+
+    <script>
+        function uploadFile() {
+            const fileInput = document.getElementById("fileInput");
+            const formData = new FormData();
+            formData.append("file", fileInput.files[0]);
+
+            fetch("/upload", {
+                method: "POST",
+                body: formData
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Network response was not ok");
+                }
+                return response.json();  // Parse the JSON response
+            })
+            .then(data => {
+                console.log("Received response:", data);  // Log the response to the console
+                if (data.status && data.message) {
+                    document.getElementById("fileResult").innerText = data.message;
+                    document.getElementById("fileResult").style.color = data.status === "Unsafe" ? "red" : "green";
+                } else {
+                    document.getElementById("fileResult").innerText = "Error: Unexpected response format";
+                }
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                document.getElementById("fileResult").innerText = "Error occurred during upload!";
+            });
+        }
+    </script>
+</body>
+</html>
