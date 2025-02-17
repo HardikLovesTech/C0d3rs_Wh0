@@ -49,7 +49,7 @@
 
 ### *1️⃣ Clone the Repository*  
 ```bash
-git clone https://github.com/your-username/authenica.git
+git clone git@github.com:HardikLovesTech/C0d3rs_Wh0.git
 cd authenica
 ```
 
@@ -63,7 +63,7 @@ pip install flask requests
 - Get a **VirusTotal API key** [here](https://developers.virustotal.com/)  
 
 
-### *4️⃣ * 
+### *4️⃣ Run The Files* 
 #### *Option 1: Run URL Shortener*
 ```bash
 python linkshortener.py
