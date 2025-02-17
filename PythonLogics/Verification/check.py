@@ -4,7 +4,7 @@ import requests
 app = Flask(__name__)
 
 # Replace with your Google Safe Browsing API Key
-API_KEY = "AIzaSyCvS2PzTBT48qt7v-g76FbS8KU3wWhYGCw"
+API_KEY = "Your_API_Key"
 API_URL = f"https://safebrowsing.googleapis.com/v4/threatMatches:find?key={API_KEY}"
 
 def check_url_safety(url):
